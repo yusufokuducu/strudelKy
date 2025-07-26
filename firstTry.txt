@@ -1,0 +1,22 @@
+$: note("<2 [c3,g3,e4] [bb2,f3,d4] [a2,f3,c4] [bb2,g3,eb4]>")
+.sound("sawtooth").vowel("<a e i o>")._punchcard().color("red")
+
+$: note("<2 [c2 c3]*4 [bb1 bb2]*4 [f2 f3]*4 [eb2 eb3]*4>")
+.sound("sawtooth").lpf("200 1000 200 1000")
+.room(2).gain(.4)._punchcard().color("cyan")
+
+
+
+$: note("<[c2 c3]*4 [bb1 bb2]*4 [f2 f3]*4 [eb2 eb3]*4 [c2 c3]*4 [bb1 bb2]*4 [f2 f3]*4 [eb2 eb3]*4>")
+.sound("sawtooth").lpf(900).gain("[1]")
+.lpf(sine.range(100, 2000).slow(4))._scope().color("green")
+await initHydra()
+let pattern = "[3 6 6  4 3 [3 6 3 7]*2]*1"
+shape(H(pattern)).color(0.1,0.1,1).scale(0.3).rotate( () => time%360 ).out(o0)
+n(pattern).scale("A:minor").piano().room(1)
+$: note("[<d5 c5> bb4 a4 f4]/4").sound("gm_pad_new_age").echo(8, 0.38/2, 0.5).room(4).lpf(300)
+
+
+$:
+  s("hh*16").gain("[.25 1]*2").room(.3).cutoff(4000,4000)
+  
